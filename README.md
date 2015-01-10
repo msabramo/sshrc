@@ -1,6 +1,6 @@
 ## Usage
 
-sshrc works just like ssh, but it also sources the ~/.sshrc on your local computer after logging in remotely.
+sshrc works just like ssh, but it also sources the `~/.sshrc` on your local computer after logging in remotely.
 
     $ echo "echo welcome" > ~/.sshrc
     $ sshrc me@myserver
@@ -11,7 +11,7 @@ sshrc works just like ssh, but it also sources the ~/.sshrc on your local comput
     $ type ..
     .. is aliased to `cd ..'
 
-You can use this to set environment variables, define functions, and run post-login commands. It's that simple, and it won't impact other users on the server - even if they use sshrc too. This makes sshrc very useful if you share a server with multiple users and can't edit the server's ~/.bashrc without affecting them, or if you have several servers that you don't want to configure independently.
+You can use this to set environment variables, define functions, and run post-login commands. It's that simple, and it won't impact other users on the server - even if they use sshrc too. This makes sshrc very useful if you share a server with multiple users and can't edit the server's `~/.bashrc` without affecting them, or if you have several servers that you don't want to configure independently.
 
 ## Installation
 
@@ -33,7 +33,7 @@ Install the [sshrc-git][] AUR package.
 
 ## Advanced configuration
 
-Your most import configuration files (e.g. vim, inputrc) may not be bash scripts. Put them in ~/.sshrc.d and sshrc will copy them to a (guaranteed) unique folder in the server's /tmp directory after login. You can find them at `$SSHHOME/.sshrc.d`. You can usually tell programs to load their configuration from the $SSHHOME/.sshrc.d directory by setting the right environment variables. Putting too much data in ~/.sshrc.d will slow down your login times. If the folder contents are > 64kB, the server may block your sshrc attempts.
+Your most important configuration files (e.g. `~/.vimrc`, `~/.inputrc`) might not be bash scripts. Put them in `~/.sshrc.d` and sshrc will copy them to a (guaranteed) unique folder in the server's `/tmp` directory after login. You can find them at `$SSHHOME/.sshrc.d`. You can usually tell programs to load their configuration from the `$SSHHOME/.sshrc.d` directory by setting the right environment variables. Putting too much data in `~/.sshrc.d` will slow down your login times. If the folder contents are > 64kB, the server may block your sshrc attempts.
 
 ### Vim
 
@@ -70,11 +70,11 @@ If you use tmux frequently, you can make sshrc work there as well. The following
     $ foo
     I work with tmux, too
 
-The -S option will start a separate tmux server. You can still safely access the vanilla tmux server with `tmux`. Tmux servers can persist for longer than your ssh session, so the above `tmuxrc` function copies your configs to the more permenant /tmp/russelltmuxserver, which won't be deleted when you close your ssh session. Starting tmux with the SHELL environment variable set to bashsshrc will take care of loading your configs with each new terminal. Setting SHELL back to /bin/bash when you're done is important to prevent quirks due to tmux sessions having a non-default SHELL variable.
+The -S option will start a separate tmux server. You can still safely access the vanilla tmux server with `tmux`. Tmux servers can persist for longer than your ssh session, so the above `tmuxrc` function copies your configs to the more permenant `/tmp/russelltmuxserver`, which won't be deleted when you close your ssh session. Starting tmux with the `SHELL` environment variable set to `bashsshrc` will take care of loading your configs with each new terminal. Setting `SHELL` back to `/bin/bash` when you're done is important to prevent quirks due to tmux sessions having a non-default `SHELL` variable.
 
 ### Specializing .sshrc to individual servers
 
-You may have different configurations for different servers. I recommend the following structure for your ~/.sshrc control flow:
+You may have different configurations for different servers. I recommend the following structure for your `~/.sshrc` control flow:
 
     if [ $(hostname | grep server1 | wc -l) == 1 ]; then
         echo 'server1'
@@ -85,8 +85,8 @@ You may have different configurations for different servers. I recommend the fol
 
 ### Tips
 
-* I don't recommend trying to throw your entire .vim folder into ~/.sshrc.d. It will more than likely be too big.
+* I don't recommend trying to throw your entire `.vim` folder into `~/.sshrc.d`. It will more than likely be too big.
 
-* For larger configurations, consider copying files to an obscure folder on the server and using ~/.sshrc to automatically source those configurations on login..
+* For larger configurations, consider copying files to an obscure folder on the server and using `~/.sshrc` to automatically source those configurations on login..
 
 [sshrc-git]: https://aur.archlinux.org/packages/sshrc-git
